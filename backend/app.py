@@ -3,6 +3,7 @@ from flask_cors import CORS
 from routes import app as routes_app
 from models import db
 from flask_login import LoginManager
+from models import User
 
 app = Flask(__name__)
 app.secret_key = '23RHT55'
@@ -15,6 +16,10 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://s4bject:sdds234432@localhost/fitnesstracker'
 db.init_app(app)
 
+@login_manager.user_loader
+def load_user(user_id):
+    # Здесь должна быть логика загрузки пользователя по ID из базы данных
+    return User.query.get(int(user_id))
 
 @app.route('/')
 def hello():

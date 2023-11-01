@@ -109,16 +109,15 @@ def get_calories():
 #     logout_user()
 #     return jsonify({"message": "Вы успешно вышли"})
 
-with open('1.json', 'r') as file:
-    data = json.load(file)
-@app.route('/register',methods=['GET', 'POST'])
+@app.route('/register', methods=['POST'])
 def register():
+    data = request.json
     name = data['name']
     email = data['email']
     password = data['password']
-    password = b'password'  # Преобразуйте пароль в байтовую строку
+    password_bytes = password.encode('utf-8')
     salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password, salt)
+    hashed_password = bcrypt.hashpw(password_bytes, salt)
     current_date = datetime.now()
     formatted_date = current_date.strftime('%Y-%m-%d')
 
@@ -126,7 +125,24 @@ def register():
     if existing_user:
         return jsonify({"message": "Пользователь с таким email уже существует"}), 400
 
-    new_user = User(id=1,name=name, email=email, password_hash=hashed_password,registration_date=formatted_date)
+    new_user = User(name=name, email=email, password_hash=password, registration_date=formatted_date)
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "Регистрация прошла успешно"})
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+    if request.method == 'POST':
+        email = request.json['email']
+        password = request.json['password']
+        user = User.query.filter_by(email=email).first()
+        if user and user.password_hash == password:
+            login_user(user)
+            print(user.name)
+            return jsonify({"message": "Успешная авторизация", "name": user.name})
+        else:
+            return print('ne ura')
+    else:
+        return jsonify({"message": "GET запрос не поддерживается"})
+
+    return jsonify({"message": "voshli"})
