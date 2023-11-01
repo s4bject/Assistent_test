@@ -1,10 +1,13 @@
+import bcrypt
 from flask import Blueprint, jsonify, request, Flask, render_template, url_for, redirect, session
 import base64
 import json
+from flask_bcrypt import Bcrypt
 from datetime import datetime
 from models import User,Exercise,WorkoutPlan,CompletedWorkout,Achievement,Goal,db,CurrentStat
 import requests
 from sqlalchemy.exc import IntegrityError
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 app = Blueprint('routes_app', __name__)
 
@@ -13,7 +16,6 @@ app = Blueprint('routes_app', __name__)
 client_id = "23RHT5"
 client_secret = "e98417175d9c5404052d1c3767c2e746"
 redirect_uri = "https://127.0.0.1:5000/callback"  # Callback URL
-
 @app.route('/auth')
 def auth():
     # Отправьте пользователя на страницу аутентификации Fitbit
@@ -82,7 +84,49 @@ def get_calories():
                 stat = CurrentStat(id=1, steps=data['summary']['steps'], calories=data['summary']['caloriesOut'],date=formatted_date)
                 db.session.add(stat)
             db.session.commit()
-            return jsonify({'message': 'Данные добавлены или обновлены'})
+            return 'Данные добавлены или обновлены'
         except IntegrityError:
             db.session.rollback()
-            return jsonify({'error': 'IntegrityError: Дупликация ключа'})
+            return 'IntegrityError: Дупликация ключа'
+
+
+# @app.route('/login', methods=['POST'])
+# def login():
+#     email = request.json.get('email')
+#     password = request.json.get('password')
+#     user = User.query.filter_by(email=email).first()
+#
+#     if user and bcrypt.check_password_hash(user.password_hash, password):
+#         login_user(user)
+#         return jsonify({"message": "Вы успешно вошли"})
+#
+#     return jsonify({"message": "Ошибка входа"}), 401
+#
+#
+# @app.route('/logout', methods=['POST'])
+# @login_required
+# def logout():
+#     logout_user()
+#     return jsonify({"message": "Вы успешно вышли"})
+
+with open('1.json', 'r') as file:
+    data = json.load(file)
+@app.route('/register',methods=['GET', 'POST'])
+def register():
+    name = data['name']
+    email = data['email']
+    password = data['password']
+    password = b'password'  # Преобразуйте пароль в байтовую строку
+    salt = bcrypt.gensalt()
+    hashed_password = bcrypt.hashpw(password, salt)
+    current_date = datetime.now()
+    formatted_date = current_date.strftime('%Y-%m-%d')
+
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"message": "Пользователь с таким email уже существует"}), 400
+
+    new_user = User(id=1,name=name, email=email, password_hash=hashed_password,registration_date=formatted_date)
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({"message": "Регистрация прошла успешно"})
