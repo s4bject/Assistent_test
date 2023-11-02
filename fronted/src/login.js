@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,8 +29,8 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.message === "Успешная авторизация") {
-          // Если авторизация успешна, установите имя пользователя
           setName(data.name);
+          history.push('/profile');
         }
       } else {
         setError('Неверный email или пароль');

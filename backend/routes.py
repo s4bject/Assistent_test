@@ -89,26 +89,6 @@ def get_calories():
             db.session.rollback()
             return 'IntegrityError: Дупликация ключа'
 
-
-# @app.route('/login', methods=['POST'])
-# def login():
-#     email = request.json.get('email')
-#     password = request.json.get('password')
-#     user = User.query.filter_by(email=email).first()
-#
-#     if user and bcrypt.check_password_hash(user.password_hash, password):
-#         login_user(user)
-#         return jsonify({"message": "Вы успешно вошли"})
-#
-#     return jsonify({"message": "Ошибка входа"}), 401
-#
-#
-# @app.route('/logout', methods=['POST'])
-# @login_required
-# def logout():
-#     logout_user()
-#     return jsonify({"message": "Вы успешно вышли"})
-
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
@@ -129,20 +109,28 @@ def register():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "Регистрация прошла успешно"})
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-
     if request.method == 'POST':
         email = request.json['email']
         password = request.json['password']
         user = User.query.filter_by(email=email).first()
         if user and user.password_hash == password:
             login_user(user)
-            print(user.name)
-            return jsonify({"message": "Успешная авторизация", "name": user.name})
+            session['user_id'] = user.id
+            return redirect(url_for('routes_app.profile'))
         else:
-            return print('ne ura')
+            return redirect(url_for('routes_app.register'))
     else:
-        return jsonify({"message": "GET запрос не поддерживается"})
+        return jsonify({"message": "not support"})
 
-    return jsonify({"message": "voshli"})
+@app.route('/profile', methods=['GET'])
+@login_required
+def profile():
+    return jsonify({
+        "user_id": current_user.id,
+        "name": current_user.name,
+        "email": current_user.email,
+        "registration_date": current_user.registration_date
+    })
