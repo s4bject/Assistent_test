@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import './login.css';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -14,8 +19,9 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
     const userData = { email, password };
+     e.preventDefault();
 
     try {
       const response = await fetch('https://127.0.0.1:5000/login', {
@@ -26,14 +32,15 @@ const Login = () => {
         body: JSON.stringify(userData),
       });
 
-      if (response.ok) {
+      if (response.status === 200) { // Проверка статуса ответа
         const data = await response.json();
-        if (data.message === "Успешная авторизация") {
-          setName(data.name);
-          history.push('/profile');
-        }
+        setName(data.name);
+        setEmail(data.email)
+        setDate(data.registration_date)
+        navigate('/profile', { state: { name: data.name, email: data.email, date: data.registration_date } });
       } else {
-        setError('Неверный email или пароль');
+        setError('Неверный email или пароль, попробуйте снова');
+        console.error('Ошибка: Неверный email или пароль');
       }
     } catch (error) {
       console.error('Ошибка при отправке данных на сервер:', error);
@@ -41,8 +48,7 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Вход</h2>
+    <div className="login-container"> {/* Добавьте класс стилей к контейнеру */}
       <form>
         <div>
           <label>Email:</label>
@@ -63,7 +69,7 @@ const Login = () => {
         <div>
           <button onClick={handleLogin}>Войти</button>
         </div>
-        {name && <p>Вы вошли как {name}</p>} {/* Вывод имени пользователя после успешной авторизации */}
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );
