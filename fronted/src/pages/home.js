@@ -1,10 +1,12 @@
 import React from 'react';
+import './style.css';
 
 function Home() {
   return (
     <div>
-      <h1>Домашняя страница</h1>
-      {/* Добавьте здесь контент для вашей домашней страницы */}
+      <h1 className="text-4xl font-bold text-blue-500">
+        Домашняя страница
+      </h1>
     </div>
   );
 }
