@@ -4,28 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Добавил авторизацию">
-      <change afterPath="D:/Assistent_test/backend/config.py" afterDir="false" />
-      <change afterPath="D:/Assistent_test/backend/routes/auth.py" afterDir="false" />
-      <change afterPath="D:/Assistent_test/backend/routes/fitbit.py" afterDir="false" />
-      <change afterPath="D:/Assistent_test/fronted/src/pages/login.css" afterDir="false" />
-      <change afterPath="D:/Assistent_test/fronted/src/pages/profile.js" afterDir="false" />
+    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Страница авторизации">
       <change beforePath="D:/Assistent_test/.idea/workspace.xml" beforeDir="false" afterPath="D:/Assistent_test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/1.json" beforeDir="false" />
-      <change beforePath="D:/Assistent_test/backend/app.py" beforeDir="false" afterPath="D:/Assistent_test/backend/app.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/models.py" beforeDir="false" afterPath="D:/Assistent_test/backend/models/models.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/routes.py" beforeDir="false" afterPath="D:/Assistent_test/backend/routes/routes.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/public/index.html" beforeDir="false" afterPath="D:/Assistent_test/fronted/public/index.html" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/App.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/App.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/home.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/home.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/login.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/login.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/profile.js" beforeDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/registration.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/registration.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="D:/Assistent_test" />
@@ -57,6 +53,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -116,6 +113,12 @@
       <workItem from="1698843421750" duration="3531000" />
       <workItem from="1698884681573" duration="9090000" />
       <workItem from="1698987179778" duration="6065000" />
+      <workItem from="1699259827869" duration="74000" />
+      <workItem from="1699451763220" duration="299000" />
+      <workItem from="1699615027442" duration="254000" />
+      <workItem from="1699616634523" duration="59000" />
+      <workItem from="1699616754615" duration="704000" />
+      <workItem from="1699787203750" duration="791000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -157,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698891124817</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Страница авторизации">
+      <option name="closed" value="true" />
+      <created>1699259866657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699259866658</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,11 +178,12 @@
     <MESSAGE value="123" />
     <MESSAGE value="Добавил считывание с трекера" />
     <MESSAGE value="Добавил авторизацию" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил авторизацию" />
+    <MESSAGE value="Страница авторизации" />
+    <option name="LAST_COMMIT_MESSAGE" value="Страница авторизации" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Assistent_test$models.coverage" NAME="models Coverage Results" MODIFIED="1698387290917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
     <SUITE FILE_PATH="coverage/Assistent_test$routes.coverage" NAME="routes Coverage Results" MODIFIED="1698844753477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
-    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1698989206074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
+    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1699615052365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
   </component>
 </project>
