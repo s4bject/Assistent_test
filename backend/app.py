@@ -12,7 +12,7 @@ app.config.from_object(Config)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'routes_app.login'
+login_manager.login_view = 'routes_auth.login'
 login_manager.login_message_category = 'info'
 CORS(app)
 

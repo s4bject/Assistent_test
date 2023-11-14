@@ -48,14 +48,15 @@ const Login = () => {
   };
 
   return (
-      <div className="bg-gray-800 min-h-screen flex items-center justify-center">
-        <form className="bg-white p-8 rounded shadow-md w-96">
+      <div className="bg-gradient-to-t from-rose-200 via-fuchsia-900 to-black min-h-screen flex items-center justify-center">
+        <form className="bg-gradient-to-t from-rose-200 via-fuchsia-800 to-gray-400 p-8 rounded shadow-md w-96">
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            <h2 className="text-3xl font-bold mb-6 text-center">Авторизация</h2>
+            <label className="block text-black text-lg font-bold mb-2" htmlFor="email">
               Email:
             </label>
             <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="text"
                 value={email}
@@ -63,26 +64,26 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            <label className="block text-black text-lg font-bold mb-2" htmlFor="password">
               Пароль:
             </label>
             <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
                 value={password}
                 onChange={handlePasswordChange}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 flex justify-center">
             <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 onClick={handleLogin}
             >
               Войти
             </button>
           </div>
-          {error && <p className="text-red-500 text-xs italic">{error}</p>}
+          {error && <p className="text-red-500 text-center font-bold text-xs italic">{error}</p>}
         </form>
       </div>
   );

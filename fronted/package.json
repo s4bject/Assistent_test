@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,7 +15,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start && npm run tailwind",
+    "start": "react-scripts start & react-scripts tailwind",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -39,6 +40,8 @@
     ]
   },
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^8.2.2",
     "tailwindcss": "^3.3.5"
   }
 }
