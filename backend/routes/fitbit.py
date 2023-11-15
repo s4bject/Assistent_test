@@ -1,16 +1,17 @@
 from flask import Blueprint, request, redirect, session
 import base64
 from datetime import datetime
-from backend.models.models import db,CurrentStat
+from backend.models.models import db, CurrentStat
 import requests
 from sqlalchemy.exc import IntegrityError
 
 fitbit = Blueprint('routes_fitbit', __name__)
 
-
 client_id = "23RHT5"
 client_secret = "e98417175d9c5404052d1c3767c2e746"
 redirect_uri = "https://127.0.0.1:5000/callback"  # Callback URL
+
+
 @fitbit.route('/auth')
 def auth():
     auth_url = "https://www.fitbit.com/oauth2/authorize"
@@ -47,6 +48,7 @@ def callback():
     else:
         return "Произошла ошибка при получении токена доступа."
 
+
 @fitbit.route('/send_stat')
 def get_calories():
     access_token = session.get("access_token")
@@ -72,7 +74,8 @@ def get_calories():
                 stat.calories = data['summary']['caloriesOut']
                 stat.date = formatted_date
             else:
-                stat = CurrentStat(id=1, steps=data['summary']['steps'], calories=data['summary']['caloriesOut'],date=formatted_date)
+                stat = CurrentStat(id=1, steps=data['summary']['steps'], calories=data['summary']['caloriesOut'],
+                                   date=formatted_date)
                 db.session.add(stat)
             db.session.commit()
             return 'Данные добавлены или обновлены'

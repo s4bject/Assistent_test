@@ -1,5 +1,5 @@
 import bcrypt
-from flask import Blueprint, jsonify, request, session
+from flask import Blueprint, jsonify, request, session, abort, url_for
 from datetime import datetime
 from backend.models.models import User, db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -24,6 +24,7 @@ def register():
     db.session.commit()
     return jsonify({"message": "Регистрация прошла успешно"})
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -31,28 +32,26 @@ def login():
         password = request.json['password']
         user = User.query.filter_by(email=email).first()
         if user and user.password_hash == password:
-            login_user(user)
+            login_user(user, remember=True)
             session['user_id'] = user.id
-            return jsonify({
-                "message": "Успешная авторизация",
-                "name": user.name,
-                "email": user.email,
-                "registration_date": user.registration_date
-            })
+            return jsonify({"message": "Успешная авторизация", "redirect": url_for('routes_auth.profile')})
         else:
             return jsonify({"message": "Неверный email или пароль"}), 401
     else:
         return jsonify({"message": "Отсутствует метод get"})
 
+
 @auth.route('/profile', methods=['GET'])
-@login_required
 def profile():
-    return jsonify({
-        "user_id": current_user.id,
-        "name": current_user.name,
-        "email": current_user.email,
-        "registration_date": current_user.registration_date
-    })
+    print(session)
+    if current_user.is_authenticated:
+        return jsonify({
+            "name": current_user.name,
+            "email": current_user.email,
+            "registration_date": current_user.registration_date
+        })
+    abort(401)
+
 
 @auth.route('/logout')
 @login_required
