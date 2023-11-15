@@ -6,9 +6,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const [name, setName] = useState('');
-    const [date, setDate] = useState('');
-
     const navigate = useNavigate();
 
     const handleEmailChange = (e) => {
@@ -46,16 +43,15 @@ const Login = () => {
     };
 
     return (
-        <div
-            className="bg-gradient-to-t from-rose-200 via-fuchsia-900 to-black min-h-screen flex items-center justify-center">
-            <form className="bg-gradient-to-t from-rose-200 via-fuchsia-800 to-gray-400 p-8 rounded shadow-md w-96">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
+            <form className="bg-white p-8 rounded shadow-md w-96">
                 <div className="mb-4">
                     <h2 className="text-3xl font-bold mb-6 text-center">Авторизация</h2>
-                    <label className="block text-black text-lg font-bold mb-2" htmlFor="email">
+                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="email">
                         Email:
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="email"
                         type="text"
                         value={email}
@@ -63,11 +59,11 @@ const Login = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-black text-lg font-bold mb-2" htmlFor="password">
+                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="password">
                         Пароль:
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="password"
                         type="password"
                         value={password}
@@ -76,7 +72,7 @@ const Login = () => {
                 </div>
                 <div className="mb-6 flex justify-center">
                     <button
-                        className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
                         onClick={handleLogin}
                     >
                         Войти

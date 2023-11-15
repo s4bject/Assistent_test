@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, session
+from flask import Blueprint, request, redirect, session, url_for
 import base64
 from datetime import datetime
 from backend.models.models import db, CurrentStat
@@ -44,7 +44,7 @@ def callback():
     if response.status_code == 200:
         access_token = response.json()["access_token"]
         session["access_token"] = access_token
-        return "Вы успешно аутентифицированы и токен доступа получен."
+        return redirect("http://localhost:3000/profile")
     else:
         return "Произошла ошибка при получении токена доступа."
 

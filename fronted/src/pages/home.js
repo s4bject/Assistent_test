@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import './style.css';
 
 const Home = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,23 +26,29 @@ const Home = () => {
 
     return (
         <div
-            className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-t from-rose-200 via-fuchsia-900 to-black">
-            <h1 className="text-5xl font-bold text-black mb-8">
-                Домашняя страница
+            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
+            <h1 className="text-5xl font-bold text-white mb-8">
+                Fitness Assistant
             </h1>
             <div className="flex space-x-4">
-                <Link to="/profile"
-                      className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                <Link
+                    to="/profile"
+                    className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
+                >
                     Профиль
                 </Link>
                 {!isAuthenticated && (
                     <>
-                        <Link to="/register"
-                              className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <Link
+                            to="/register"
+                            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
+                        >
                             Регистрация
                         </Link>
-                        <Link to="/login"
-                              className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        <Link
+                            to="/login"
+                            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
+                        >
                             Авторизация
                         </Link>
                     </>
@@ -52,4 +57,5 @@ const Home = () => {
         </div>
     );
 };
+
 export default Home;

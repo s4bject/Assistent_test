@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import { useAuth } from './UseAuth';
 
 const Profile = () => {
     const [profileData, setProfileData] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
+
+    useAuth();
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -53,18 +56,17 @@ const Profile = () => {
     };
 
     return (
-        <div
-            className="bg-gradient-to-t from-rose-200 via-fuchsia-900 to-black min-h-screen flex items-center justify-center">
-            <div className="bg-gradient-to-t from-rose-200 via-fuchsia-800 to-gray-400 p-8 rounded shadow-md w-1/2">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
+            <div className="bg-white p-8 rounded shadow-md w-96">
                 <h2 className="text-3xl font-bold mb-6 text-center">Профиль пользователя</h2>
                 {errorMessage ? (
-                    <p className="text-black text-center text-lg font-bold mb-2">{errorMessage}</p>
+                    <p className="text-red-500 text-center text-lg font-bold mb-2">{errorMessage}</p>
                 ) : (
                     profileData ? (
-                        <div>
-                            <p className="text-black text-lg font-bold mb-2">Имя: {profileData.name}</p>
-                            <p className="text-black text-lg font-bold mb-2">Email: {profileData.email}</p>
-                            <p className="text-black text-lg font-bold mb-2">Дата
+                        <div className="mb-4 space-y-2">
+                            <p className="text-gray-700 text-lg font-bold mb-2">Имя: {profileData.name}</p>
+                            <p className="text-gray-700 text-lg font-bold mb-2">Email: {profileData.email}</p>
+                            <p className="text-gray-700 text-lg font-bold mb-2">Дата
                                 регистрации: {new Date(profileData.registration_date).toLocaleDateString()}</p>
                         </div>
                     ) : (
@@ -74,20 +76,31 @@ const Profile = () => {
                 <div className="mb-6 flex justify-center space-x-4">
                     {profileData && (
                         <button
-                            className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
                             onClick={handleLogout}
                         >
                             Выйти
                         </button>
                     )}
-                    <Link to="/"
-                          className="bg-gray-800 hover:bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <Link
+                        to="/"
+                        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
+                    >
                         Домашняя страница
                     </Link>
+                </div>
+                <div className="mb-6 flex justify-center space-x-4">
+                    <a
+                        onClick={() => window.location.href = 'https://127.0.0.1:5000/auth'}
+                        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105 flex items-center space-x-2"
+                    >
+                        <img src="/img.png" alt="Fitbit Logo" className="w-12 h-12 object-cover object-center"/>
+                    </a>
                 </div>
             </div>
         </div>
     );
+
 };
 
 export default Profile;
