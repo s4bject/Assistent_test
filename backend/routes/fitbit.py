@@ -49,11 +49,14 @@ def callback():
         return "Произошла ошибка при получении токена доступа."
 
 
+from flask import jsonify
+
+
 @fitbit.route('/send_stat')
 def get_calories():
     access_token = session.get("access_token")
     if not access_token:
-        return "Токен доступа не найден. Пожалуйста, выполните аутентификацию."
+        return jsonify({"error": "Токен доступа не найден. Пожалуйста, выполните аутентификацию."}), 401
 
     current_date = datetime.now()
     formatted_date = current_date.strftime('%Y-%m-%d')
@@ -67,7 +70,6 @@ def get_calories():
     if response.status_code == 200:
         data = response.json()
         try:
-
             stat = CurrentStat.query.filter_by(id=1).first()
             if stat:
                 stat.steps = data['summary']['steps']
@@ -78,7 +80,7 @@ def get_calories():
                                    date=formatted_date)
                 db.session.add(stat)
             db.session.commit()
-            return 'Данные добавлены или обновлены'
+            return jsonify({"message": "Данные добавлены или обновлены", "stat": stat.to_dict()})
         except IntegrityError:
             db.session.rollback()
-            return 'IntegrityError: Дупликация ключа'
+            return jsonify({"error": "IntegrityError: Дупликация ключа"}), 400

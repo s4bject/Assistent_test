@@ -56,3 +56,11 @@ class CurrentStat(db.Model):
     steps = db.Column(db.Integer)
     calories = db.Column(db.Integer)
     date = db.Column(db.String(120), unique=True, nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'steps': self.steps,
+            'calories': self.calories,
+            'date': self.date
+        }

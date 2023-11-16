@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import { useAuth } from './UseAuth';
+import {useAuth} from './UseAuth';
 
 const Profile = () => {
     const [profileData, setProfileData] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const [statData, setStatData] = useState(null);
+    const [steps, setSteps] = useState(null);
+    const [calories, setCalories] = useState(null);
     const navigate = useNavigate();
 
     useAuth();
@@ -26,7 +29,6 @@ const Profile = () => {
                 if (response.status === 200) {
                     console.log("data", data);
                     setProfileData(data);
-                    console.log(data);
                     navigate('/profile');
                 } else {
                     navigate('/login');
@@ -37,6 +39,30 @@ const Profile = () => {
         };
 
         fetchProfile();
+    }, [navigate]);
+
+    useEffect(() => {
+        const fetchStat = async () => {
+            try {
+                const response = await fetch('https://127.0.0.1:5000/send_stat', {
+                    credentials: 'include'
+                });
+
+
+                const data = await response.json();
+
+                if (response.status === 200) {
+                    console.log("stat data", data);
+                    setStatData(data);
+                    setSteps(data.stat.steps);
+                    setCalories(data.stat.calories);
+                }
+            } catch (error) {
+                console.error('Ошибка при получении статистики:', error);
+            }
+        };
+
+        fetchStat();
     }, [navigate]);
 
     const handleLogout = () => {
@@ -68,6 +94,15 @@ const Profile = () => {
                             <p className="text-gray-700 text-lg font-bold mb-2">Email: {profileData.email}</p>
                             <p className="text-gray-700 text-lg font-bold mb-2">Дата
                                 регистрации: {new Date(profileData.registration_date).toLocaleDateString()}</p>
+                            {statData ? (
+                                <div className="mb-4 space-y-2">
+                                    <p className="text-gray-700 text-lg font-bold mb-2">Количество шагов: {steps}</p>
+                                    <p className="text-gray-700 text-lg font-bold mb-2">Количество
+                                        калорий: {calories}</p>
+                                </div>
+                            ) : (
+                                <p></p>
+                            )}
                         </div>
                     ) : (
                         <p></p>
@@ -100,7 +135,6 @@ const Profile = () => {
             </div>
         </div>
     );
-
 };
 
 export default Profile;
