@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Добавление привзяки аккаунта трекера(доработать)">
+    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Добавил привязку трекера">
+      <change afterPath="D:/Assistent_test/task.txt" afterDir="false" />
       <change beforePath="D:/Assistent_test/.idea/workspace.xml" beforeDir="false" afterPath="D:/Assistent_test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/models/models.py" beforeDir="false" afterPath="D:/Assistent_test/backend/models/models.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/routes/fitbit.py" beforeDir="false" afterPath="D:/Assistent_test/backend/routes/fitbit.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/pages/profile.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/profile.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/pages/style.css" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +153,7 @@
       <workItem from="1699941865690" duration="17664000" />
       <workItem from="1699976878593" duration="906000" />
       <workItem from="1700027465088" duration="11113000" />
-      <workItem from="1700115959435" duration="2164000" />
+      <workItem from="1700115959435" duration="3798000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -262,7 +259,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700039896101</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Добавил привязку трекера">
+      <option name="closed" value="true" />
+      <created>1700118424781</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1700118424781</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +283,8 @@
     <MESSAGE value="Улучшил лоигику пользователя, добавил файлы куки, отформатировал все файлы" />
     <MESSAGE value="Логотоп" />
     <MESSAGE value="Добавление привзяки аккаунта трекера(доработать)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавление привзяки аккаунта трекера(доработать)" />
+    <MESSAGE value="Добавил привязку трекера" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил привязку трекера" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
