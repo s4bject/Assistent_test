@@ -1,7 +1,7 @@
-from flask import Blueprint, request, redirect, session, url_for
+from flask import Blueprint, request, redirect, session, g
 import base64
 from datetime import datetime
-from backend.models.models import db, CurrentStat
+from backend.models.models import db, CurrentStat, User
 import requests
 from sqlalchemy.exc import IntegrityError
 
@@ -11,6 +11,14 @@ client_id = "23RHT5"
 client_secret = "e98417175d9c5404052d1c3767c2e746"
 redirect_uri = "https://127.0.0.1:5000/callback"  # Callback URL
 
+
+@fitbit.before_request
+def load_logged_in_user():
+   user_id = session.get('user_id')
+   if user_id is None:
+       g.user = None
+   else:
+       g.user = User.query.get(user_id)
 
 @fitbit.route('/auth')
 def auth():
@@ -44,6 +52,8 @@ def callback():
     if response.status_code == 200:
         access_token = response.json()["access_token"]
         session["access_token"] = access_token
+        g.user.fitbit_token = access_token
+        db.session.commit()
         return redirect("http://localhost:3000/profile")
     else:
         return "Произошла ошибка при получении токена доступа."
@@ -66,7 +76,9 @@ def get_calories():
     }
 
     response = requests.get(url, headers=headers)
-
+    access_token = g.user.fitbit_token
+    if not access_token:
+        return jsonify({"error": "Токен доступа не найден. Пожалуйста, выполните аутентификацию."}), 401
     if response.status_code == 200:
         data = response.json()
         try:
