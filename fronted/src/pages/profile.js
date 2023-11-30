@@ -9,6 +9,8 @@ const Profile = () => {
     const [steps, setSteps] = useState(null);
     const [calories, setCalories] = useState(null);
     const navigate = useNavigate();
+    const MAX_STEPS = 10000
+    const MAX_CALORIES = 10000
 
     useAuth();
 
@@ -97,8 +99,26 @@ const Profile = () => {
                             {statData ? (
                                 <div className="mb-4 space-y-2">
                                     <p className="text-gray-700 text-lg font-bold mb-2">Количество шагов: {steps}</p>
+                                    <div className="relative bg-gray-200 h-6 rounded-lg overflow-hidden">
+                                        <div className="bg-green-500 h-full"
+                                             style={{width: `${(steps / MAX_STEPS) * 100}%`}}>
+                                            <span
+                                                className="absolute inset-0 flex items-center justify-center text-xs text-gray-700 font-semibold">
+                                                {`${steps}/${MAX_STEPS} (${((steps / MAX_STEPS) * 100).toFixed(2)}%)`}
+                                            </span>
+                                        </div>
+                                    </div>
                                     <p className="text-gray-700 text-lg font-bold mb-2">Количество
                                         калорий: {calories}</p>
+                                    <div className="relative bg-gray-200 h-6 rounded-lg overflow-hidden">
+                                        <div className="bg-green-500 h-full"
+                                             style={{width: `${(calories / MAX_CALORIES) * 100}%`}}>
+                                            <span
+                                                className="absolute inset-0 flex items-center justify-center text-xs text-gray-700 font-semibold">
+                                                {`${calories}/${MAX_CALORIES} (${((calories / MAX_CALORIES) * 100).toFixed(2)}%)`}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             ) : (
                                 <p></p>
@@ -117,6 +137,7 @@ const Profile = () => {
                             Выйти
                         </button>
                     )}
+                    {/* Добавьте импорт для Link из вашего маршрутизатора */}
                     <Link
                         to="/"
                         className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"

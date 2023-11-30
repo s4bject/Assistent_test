@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Добавил таски">
+    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Добавил токен доступа к трекеру">
       <change beforePath="D:/Assistent_test/.idea/workspace.xml" beforeDir="false" afterPath="D:/Assistent_test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/models/models.py" beforeDir="false" afterPath="D:/Assistent_test/backend/models/models.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/routes/fitbit.py" beforeDir="false" afterPath="D:/Assistent_test/backend/routes/fitbit.py" afterDir="false" />
+      <change beforePath="D:/Assistent_test/backend/routes/auth.py" beforeDir="false" afterPath="D:/Assistent_test/backend/routes/auth.py" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/profile.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/profile.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/registration.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/registration.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/style.css" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/style.css" afterDir="false" />
+      <change beforePath="D:/Assistent_test/task.txt" beforeDir="false" afterPath="D:/Assistent_test/task.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +58,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -69,7 +73,7 @@
       <recent name="D:\Assistent_test\backend\models" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -155,7 +159,11 @@
       <workItem from="1699976878593" duration="906000" />
       <workItem from="1700027465088" duration="11113000" />
       <workItem from="1700115959435" duration="5193000" />
-      <workItem from="1700470117194" duration="1633000" />
+      <workItem from="1700470117194" duration="1777000" />
+      <workItem from="1701073204942" duration="12000" />
+      <workItem from="1701073497118" duration="3963000" />
+      <workItem from="1701239163208" duration="127000" />
+      <workItem from="1701247426548" duration="3065000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -277,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700121241828</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Добавил токен доступа к трекеру">
+      <option name="closed" value="true" />
+      <created>1700471885458</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1700471885458</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +311,8 @@
     <MESSAGE value="Добавление привзяки аккаунта трекера(доработать)" />
     <MESSAGE value="Добавил привязку трекера" />
     <MESSAGE value="Добавил таски" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил таски" />
+    <MESSAGE value="Добавил токен доступа к трекеру" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил токен доступа к трекеру" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -311,6 +328,6 @@
     <SUITE FILE_PATH="coverage/Assistent_test$auth.coverage" NAME="auth Coverage Results" MODIFIED="1699971033328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend/routes" />
     <SUITE FILE_PATH="coverage/Assistent_test$models.coverage" NAME="models Coverage Results" MODIFIED="1698387290917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
     <SUITE FILE_PATH="coverage/Assistent_test$routes.coverage" NAME="routes Coverage Results" MODIFIED="1698844753477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
-    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1700470515735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
+    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1701247440439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
   </component>
 </project>
