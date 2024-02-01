@@ -1,23 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {useAuth} from './UseAuth';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from './UseAuth';
+import { useSpring, animated } from 'react-spring';
 
-const Profile = () => {
+const Profile = ({ apiUrl }) => {
     const [profileData, setProfileData] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const [statData, setStatData] = useState(null);
-    const [steps, setSteps] = useState(null);
-    const [calories, setCalories] = useState(null);
+    const [steps, setSteps] = useState(0);
+    const [calories, setCalories] = useState(0);
     const navigate = useNavigate();
-    const MAX_STEPS = 10000
-    const MAX_CALORIES = 10000
+    const MAX_STEPS = 10000;
+    const MAX_CALORIES = 10000;
 
     useAuth();
 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch('https://127.0.0.1:5000/profile', {
+                const response = await fetch(`${apiUrl}/profile`, {
                     credentials: 'include'
                 });
 
@@ -29,7 +30,6 @@ const Profile = () => {
                 const data = await response.json();
 
                 if (response.status === 200) {
-                    console.log("data", data);
                     setProfileData(data);
                     navigate('/profile');
                 } else {
@@ -41,20 +41,18 @@ const Profile = () => {
         };
 
         fetchProfile();
-    }, [navigate]);
+    }, [apiUrl, navigate]);
 
     useEffect(() => {
         const fetchStat = async () => {
             try {
-                const response = await fetch('https://127.0.0.1:5000/send_stat', {
+                const response = await fetch(`${apiUrl}/send_stat`, {
                     credentials: 'include'
                 });
-
 
                 const data = await response.json();
 
                 if (response.status === 200) {
-                    console.log("stat data", data);
                     setStatData(data);
                     setSteps(data.stat.steps);
                     setCalories(data.stat.calories);
@@ -65,10 +63,22 @@ const Profile = () => {
         };
 
         fetchStat();
-    }, [navigate]);
+    }, [apiUrl]);
+
+    const animatedSteps = useSpring({
+        from: { width: '0%' },
+        to: { width: `${(steps / MAX_STEPS) * 100}%` },
+        config: { duration: 1000 },
+    });
+
+    const animatedCalories = useSpring({
+        from: { width: '0%' },
+        to: { width: `${(calories / MAX_CALORIES) * 100}%` },
+        config: { duration: 1000 },
+    });
 
     const handleLogout = () => {
-        fetch('https://127.0.0.1:5000/logout', {
+        fetch(`${apiUrl}/logout`, {
             credentials: 'include',
         })
             .then(response => {
@@ -84,74 +94,85 @@ const Profile = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
-            <div className="bg-white p-8 rounded shadow-md w-96">
-                <h2 className="text-3xl font-bold mb-6 text-center">Профиль пользователя</h2>
+        <div className="min-h-screen bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center">
+            <div className="bg-white p-8 rounded shadow-md max-w-screen-lg w-full">
+                <h2 className="text-4xl font-semibold mb-8 text-center text-gray-800">Профиль пользователя</h2>
                 {errorMessage ? (
-                    <p className="text-red-500 text-center text-lg font-bold mb-2">{errorMessage}</p>
+                    <p className="text-red-600 text-lg font-semibold mb-4 text-center">{errorMessage}</p>
                 ) : (
                     profileData ? (
-                        <div className="mb-4 space-y-2">
-                            <p className="text-gray-700 text-lg font-bold mb-2">Имя: {profileData.name}</p>
-                            <p className="text-gray-700 text-lg font-bold mb-2">Email: {profileData.email}</p>
-                            <p className="text-gray-700 text-lg font-bold mb-2">Дата
-                                регистрации: {new Date(profileData.registration_date).toLocaleDateString()}</p>
-                            {statData ? (
-                                <div className="mb-4 space-y-2">
-                                    <p className="text-gray-700 text-lg font-bold mb-2">Количество шагов: {steps}</p>
-                                    <div className="relative bg-gray-200 h-6 rounded-lg overflow-hidden">
-                                        <div className="bg-green-500 h-full"
-                                             style={{width: `${(steps / MAX_STEPS) * 100}%`}}>
-                                            <span
-                                                className="absolute inset-0 flex items-center justify-center text-xs text-gray-700 font-semibold">
-                                                {`${steps}/${MAX_STEPS} (${((steps / MAX_STEPS) * 100).toFixed(2)}%)`}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <p className="text-gray-700 text-lg font-bold mb-2">Количество
-                                        калорий: {calories}</p>
-                                    <div className="relative bg-gray-200 h-6 rounded-lg overflow-hidden">
-                                        <div className="bg-green-500 h-full"
-                                             style={{width: `${(calories / MAX_CALORIES) * 100}%`}}>
-                                            <span
-                                                className="absolute inset-0 flex items-center justify-center text-xs text-gray-700 font-semibold">
-                                                {`${calories}/${MAX_CALORIES} (${((calories / MAX_CALORIES) * 100).toFixed(2)}%)`}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <p></p>
-                            )}
+                        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+                            <div className="w-full md:w-1/2">
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Имя: {profileData.name}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Email: {profileData.email}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Дата регистрации: {new Date(profileData.registration_date).toLocaleDateString()}</p>
+                            </div>
+                            <div className="w-full md:w-1/2">
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Количество шагов: {steps}</p>
+                                <animated.div className="relative bg-gray-300 h-8 rounded-lg overflow-hidden">
+                                    <animated.div className="bg-green-500 h-full" style={animatedSteps}>
+                                        <span className="absolute inset-0 flex items-center justify-center text-xs text-gray-800 font-semibold">
+                                            {`${steps}/${MAX_STEPS} (${((steps / MAX_STEPS) * 100).toFixed(2)}%)`}
+                                        </span>
+                                    </animated.div>
+                                </animated.div>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Количество калорий: {calories}</p>
+                                <animated.div className="relative bg-gray-300 h-8 rounded-lg overflow-hidden">
+                                    <animated.div className="bg-green-500 h-full" style={animatedCalories}>
+                                        <span className="absolute inset-0 flex items-center justify-center text-xs text-gray-800 font-semibold">
+                                            {`${calories}/${MAX_CALORIES} (${((calories / MAX_CALORIES) * 100).toFixed(2)}%)`}
+                                        </span>
+                                    </animated.div>
+                                </animated.div>
+                            </div>
                         </div>
                     ) : (
                         <p></p>
                     )
                 )}
-                <div className="mb-6 flex justify-center space-x-4">
+                <div className="mt-8 flex flex-col items-center space-y-4">
                     {profileData && (
-                        <button
-                            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
-                            onClick={handleLogout}
-                        >
-                            Выйти
-                        </button>
+                        <>
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                                onClick={handleLogout}
+                            >
+                                Выйти
+                            </button>
+                            <Link
+                                to="/"
+                                className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                            >
+                                Домашняя страница
+                            </Link>
+                            {profileData && (
+                                <Link
+                                    to="/workout/plan"
+                                    className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                                >
+                                    Планы тренировок
+                                </Link>
+                            )}
+                            {profileData && (
+                                <a
+                                    onClick={() => window.location.href = `${apiUrl}/auth`}
+                                    className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-6 rounded shadow-md transition duration-500 ease-in-out hover:scale-105 flex items-center space-x-2"
+                                >
+                                    <img src="/img.png" alt="Fitbit Logo" className="w-12 h-12 object-cover object-center" />
+                                </a>
+                            )}
+                        </>
                     )}
-                    {/* Добавьте импорт для Link из вашего маршрутизатора */}
-                    <Link
-                        to="/"
-                        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
-                    >
-                        Домашняя страница
-                    </Link>
-                </div>
-                <div className="mb-6 flex justify-center space-x-4">
-                    <a
-                        onClick={() => window.location.href = 'https://127.0.0.1:5000/auth'}
-                        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105 flex items-center space-x-2"
-                    >
-                        <img src="/img.png" alt="Fitbit Logo" className="w-12 h-12 object-cover object-center"/>
-                    </a>
+                    {!profileData && (
+                        <>
+                            <Link
+                                to="/login"
+                                className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                            >
+                                Войти
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

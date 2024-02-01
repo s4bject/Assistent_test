@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 
-const Home = () => {
+const Home = ({apiUrl}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch('https://127.0.0.1:5000/profile', {
+                const response = await fetch(`${apiUrl}/profile`, {
                     credentials: 'include'
                 });
 

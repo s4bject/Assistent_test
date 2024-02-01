@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from backend.routes.auth import auth as routes_auth
 from backend.routes.fitbit import fitbit as routes_fitbit
+from backend.routes.routes import workout_routes
 from backend.models.models import db
 from flask_login import LoginManager
 from backend.models.models import User
@@ -20,6 +21,7 @@ CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
 db.init_app(app)
 app.register_blueprint(routes_auth)
 app.register_blueprint(routes_fitbit)
+app.register_blueprint(workout_routes)
 
 
 @login_manager.user_loader

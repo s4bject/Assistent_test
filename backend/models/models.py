@@ -13,22 +13,32 @@ class User(db.Model, UserMixin):
     registration_date = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     fitbit_token = db.Column(db.String(256), nullable=False)
 
-
 class WorkoutPlan(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    creator = db.relationship('User', backref=db.backref('workout_plans', lazy=True))
-
+    exercises = db.relationship('Exercise', backref='workout_plan', lazy=True)
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'user_id': self.user_id,
+        }
 
 class Exercise(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    creator = db.relationship('User', backref=db.backref('exercises', lazy=True))
-
+    workout_plan_id = db.Column(db.Integer, db.ForeignKey('workout_plan.id'), nullable=False)
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'workout_plan_id': self.workout_plan_id,
+        }
 
 class CompletedWorkout(db.Model):
     id = db.Column(db.Integer, primary_key=True)

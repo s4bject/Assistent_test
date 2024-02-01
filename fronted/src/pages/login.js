@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './style.css';
 
-const Login = () => {
+const Login = ({apiUrl}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('https://127.0.0.1:5000/login', {
+            const response = await fetch(`${apiUrl}/login`, {
                 credentials: 'include',
                 method: 'POST',
                 headers: {

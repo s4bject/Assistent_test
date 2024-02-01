@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../config';
 
 export const useAuth = () => {
  const navigate = useNavigate();
@@ -9,7 +10,7 @@ export const useAuth = () => {
      const urlParams = new URLSearchParams(window.location.search);
      const accessToken = urlParams.get('access_token');
 
-     fetch('https://127.0.0.1:5000/send_stat', {
+     fetch(`${apiUrl}/send_stat`, {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',

@@ -4,8 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Изменение логикии и внешнего вида">
+    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="План написания диплома">
+      <change afterPath="D:/Assistent_test/fronted/src/config.js" afterDir="false" />
+      <change afterPath="D:/Assistent_test/fronted/src/pages/workout_list.js" afterDir="false" />
+      <change afterPath="D:/Assistent_test/fronted/src/pages/workout_plan.js" afterDir="false" />
       <change beforePath="D:/Assistent_test/.idea/workspace.xml" beforeDir="false" afterPath="D:/Assistent_test/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="D:/Assistent_test/backend/app.py" beforeDir="false" afterPath="D:/Assistent_test/backend/app.py" afterDir="false" />
+      <change beforePath="D:/Assistent_test/backend/models/models.py" beforeDir="false" afterPath="D:/Assistent_test/backend/models/models.py" afterDir="false" />
+      <change beforePath="D:/Assistent_test/backend/routes/routes.py" beforeDir="false" afterPath="D:/Assistent_test/backend/routes/routes.py" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/package-lock.json" beforeDir="false" afterPath="D:/Assistent_test/fronted/package-lock.json" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/package.json" beforeDir="false" afterPath="D:/Assistent_test/fronted/package.json" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/App.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/App.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/UseAuth.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/UseAuth.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/home.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/home.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/login.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/login.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/profile.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/profile.js" afterDir="false" />
+      <change beforePath="D:/Assistent_test/fronted/src/pages/registration.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/registration.js" afterDir="false" />
       <change beforePath="D:/Assistent_test/fronted/src/pages/style.css" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/style.css" afterDir="false" />
       <change beforePath="D:/Assistent_test/task.txt" beforeDir="false" afterPath="D:/Assistent_test/task.txt" afterDir="false" />
     </list>
@@ -65,12 +79,13 @@
       <recent name="D:\Assistent_test\fronted\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Assistent_test\fronted\src" />
       <recent name="D:\Assistent_test\fronted\src\pages" />
       <recent name="D:\Assistent_test\backend\routes" />
       <recent name="D:\Assistent_test\backend\models" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.tailwind">
+  <component name="RunManager" selected="npm.start">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -124,8 +139,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.tailwind" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.tailwind" />
         <item itemvalue="Node.js.login.js" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="HTTP Request.All in generated-requests" />
@@ -165,7 +180,11 @@
       <workItem from="1701398752437" duration="524000" />
       <workItem from="1701694654008" duration="14000" />
       <workItem from="1701849107353" duration="359000" />
-      <workItem from="1701849551541" duration="175000" />
+      <workItem from="1701849551541" duration="2052000" />
+      <workItem from="1702280716452" duration="38000" />
+      <workItem from="1705377952977" duration="8052000" />
+      <workItem from="1706515423918" duration="8530000" />
+      <workItem from="1706779786411" duration="4471000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -303,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701322768506</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="План написания диплома">
+      <option name="closed" value="true" />
+      <created>1701849749929</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701849749930</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +350,8 @@
     <MESSAGE value="Добавил таски" />
     <MESSAGE value="Добавил токен доступа к трекеру" />
     <MESSAGE value="Изменение логикии и внешнего вида" />
-    <option name="LAST_COMMIT_MESSAGE" value="Изменение логикии и внешнего вида" />
+    <MESSAGE value="План написания диплома" />
+    <option name="LAST_COMMIT_MESSAGE" value="План написания диплома" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -332,6 +360,10 @@
           <url>file://D:/Assistent_test/fronted/src/index.js</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://D:/Assistent_test/backend/routes/routes.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -339,6 +371,6 @@
     <SUITE FILE_PATH="coverage/Assistent_test$auth.coverage" NAME="auth Coverage Results" MODIFIED="1699971033328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend/routes" />
     <SUITE FILE_PATH="coverage/Assistent_test$models.coverage" NAME="models Coverage Results" MODIFIED="1698387290917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
     <SUITE FILE_PATH="coverage/Assistent_test$routes.coverage" NAME="routes Coverage Results" MODIFIED="1698844753477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
-    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1701849203183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
+    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1706782344237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
   </component>
 </project>
