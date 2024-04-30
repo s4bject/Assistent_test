@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Home = ({apiUrl}) => {
+const Home = ({ apiUrl }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -14,45 +15,44 @@ const Home = ({apiUrl}) => {
 
                 if (response.status === 200) {
                     setIsAuthenticated(true);
-                    return;
                 }
             } catch (error) {
                 console.error('Ошибка при получении профиля:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchProfile();
     }, [navigate]);
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
-        <div
-            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-green-400 to-blue-500">
-            <h1 className="text-5xl font-bold text-white mb-8">
-                Fitness Assistant
-            </h1>
-            <div className="flex space-x-4">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-gray-900 text-white">
+            <h1 className="text-5xl font-bold mb-8">Fitness Assistant</h1>
+            <p className="text-lg mb-12">Лучший способ достичь ваших фитнес-целей</p>
+            <div className="flex flex-col items-center space-y-4">
                 <Link
                     to="/profile"
-                    className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
+                    className={`bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ${isAuthenticated ? 'visible' : 'invisible'}`}
                 >
-                    Профиль
+                    Мой профиль
                 </Link>
-                {!isAuthenticated && (
-                    <>
-                        <Link
-                            to="/register"
-                            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
-                        >
-                            Регистрация
-                        </Link>
-                        <Link
-                            to="/login"
-                            className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded shadow transform transition duration-500 ease-in-out hover:scale-105"
-                        >
-                            Авторизация
-                        </Link>
-                    </>
-                )}
+                <Link
+                    to="/register"
+                    className={`bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ${isAuthenticated ? 'invisible' : 'visible'}`}
+                >
+                    Регистрация
+                </Link>
+                <Link
+                    to="/login"
+                    className={`bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 ${isAuthenticated ? 'invisible' : 'visible'}`}
+                >
+                    Войти
+                </Link>
             </div>
         </div>
     );

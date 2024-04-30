@@ -94,21 +94,25 @@ const Profile = ({ apiUrl }) => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-800 to-gray-900 text-white">
             <div className="bg-white p-8 rounded shadow-md max-w-screen-lg w-full">
-                <h2 className="text-4xl font-semibold mb-8 text-center text-gray-800">Профиль пользователя</h2>
+                <h2 className="text-4xl font-semibold mb-8 text-center text-gray-800">Ваш профиль</h2>
                 {errorMessage ? (
                     <p className="text-red-600 text-lg font-semibold mb-4 text-center">{errorMessage}</p>
                 ) : (
                     profileData ? (
                         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                             <div className="w-full md:w-1/2">
-                                <p className="text-gray-700 text-lg font-semibold mb-2">Имя: {profileData.name}</p>
-                                <p className="text-gray-700 text-lg font-semibold mb-2">Email: {profileData.email}</p>
-                                <p className="text-gray-700 text-lg font-semibold mb-2">Дата регистрации: {new Date(profileData.registration_date).toLocaleDateString()}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Имя:</p>
+                                <p className="text-gray-700 text-2xl font-semibold mb-6">{profileData.name}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Email:</p>
+                                <p className="text-gray-700 text-2xl font-semibold mb-6">{profileData.email}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Дата регистрации:</p>
+                                <p className="text-gray-700 text-2xl font-semibold mb-6">{new Date(profileData.registration_date).toLocaleDateString()}</p>
                             </div>
                             <div className="w-full md:w-1/2">
-                                <p className="text-gray-700 text-lg font-semibold mb-2">Количество шагов: {steps}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Количество шагов:</p>
+                                <p className="text-gray-700 text-2xl font-semibold mb-6">{steps}</p>
                                 <animated.div className="relative bg-gray-300 h-8 rounded-lg overflow-hidden">
                                     <animated.div className="bg-green-500 h-full" style={animatedSteps}>
                                         <span className="absolute inset-0 flex items-center justify-center text-xs text-gray-800 font-semibold">
@@ -116,7 +120,8 @@ const Profile = ({ apiUrl }) => {
                                         </span>
                                     </animated.div>
                                 </animated.div>
-                                <p className="text-gray-700 text-lg font-semibold mb-2">Количество калорий: {calories}</p>
+                                <p className="text-gray-700 text-lg font-semibold mb-2">Количество калорий:</p>
+                                <p className="text-gray-700 text-2xl font-semibold mb-6">{calories}</p>
                                 <animated.div className="relative bg-gray-300 h-8 rounded-lg overflow-hidden">
                                     <animated.div className="bg-green-500 h-full" style={animatedCalories}>
                                         <span className="absolute inset-0 flex items-center justify-center text-xs text-gray-800 font-semibold">
@@ -134,21 +139,21 @@ const Profile = ({ apiUrl }) => {
                     {profileData && (
                         <>
                             <button
-                                className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                                className="bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 transform hover:scale-105"
                                 onClick={handleLogout}
                             >
                                 Выйти
                             </button>
                             <Link
                                 to="/"
-                                className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                                className="bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 transform hover:scale-105"
                             >
                                 Домашняя страница
                             </Link>
                             {profileData && (
                                 <Link
                                     to="/workout/plan"
-                                    className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                                    className="bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white font-semibold py-3 px-6 rounded-md shadow-md transition duration-300 transform hover:scale-105"
                                 >
                                     Планы тренировок
                                 </Link>
@@ -167,7 +172,7 @@ const Profile = ({ apiUrl }) => {
                         <>
                             <Link
                                 to="/login"
-                                className="bg-blue-500 hover:bg-blue-700 focus:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
+                                className="bg-gray-600 hover:bg-gray-700 focus:bg-gray-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 transform hover:scale-105"
                             >
                                 Войти
                             </Link>

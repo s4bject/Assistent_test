@@ -4,24 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="План написания диплома">
-      <change afterPath="D:/Assistent_test/fronted/src/config.js" afterDir="false" />
-      <change afterPath="D:/Assistent_test/fronted/src/pages/workout_list.js" afterDir="false" />
-      <change afterPath="D:/Assistent_test/fronted/src/pages/workout_plan.js" afterDir="false" />
+    <list default="true" id="24c13831-8840-4f03-956c-2c12c7b25fab" name="Changes" comment="Редизайн">
       <change beforePath="D:/Assistent_test/.idea/workspace.xml" beforeDir="false" afterPath="D:/Assistent_test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/app.py" beforeDir="false" afterPath="D:/Assistent_test/backend/app.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/models/models.py" beforeDir="false" afterPath="D:/Assistent_test/backend/models/models.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/backend/routes/routes.py" beforeDir="false" afterPath="D:/Assistent_test/backend/routes/routes.py" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/package-lock.json" beforeDir="false" afterPath="D:/Assistent_test/fronted/package-lock.json" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/package.json" beforeDir="false" afterPath="D:/Assistent_test/fronted/package.json" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/App.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/App.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/pages/UseAuth.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/UseAuth.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/pages/home.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/home.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/pages/login.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/login.js" afterDir="false" />
-      <change beforePath="D:/Assistent_test/fronted/src/pages/profile.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/profile.js" afterDir="false" />
       <change beforePath="D:/Assistent_test/fronted/src/pages/registration.js" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/registration.js" afterDir="false" />
       <change beforePath="D:/Assistent_test/fronted/src/pages/style.css" beforeDir="false" afterPath="D:/Assistent_test/fronted/src/pages/style.css" afterDir="false" />
-      <change beforePath="D:/Assistent_test/task.txt" beforeDir="false" afterPath="D:/Assistent_test/task.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +55,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -85,7 +71,7 @@
       <recent name="D:\Assistent_test\backend\models" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.tailwind">
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
@@ -139,8 +125,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.tailwind" />
+        <item itemvalue="npm.start" />
         <item itemvalue="Node.js.login.js" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="HTTP Request.All in generated-requests" />
@@ -184,7 +170,16 @@
       <workItem from="1702280716452" duration="38000" />
       <workItem from="1705377952977" duration="8052000" />
       <workItem from="1706515423918" duration="8530000" />
-      <workItem from="1706779786411" duration="4471000" />
+      <workItem from="1706779786411" duration="5829000" />
+      <workItem from="1706866508867" duration="4156000" />
+      <workItem from="1707818905199" duration="46000" />
+      <workItem from="1713622664240" duration="164000" />
+      <workItem from="1714470282200" duration="8191000" />
+      <workItem from="1714481541778" duration="802000" />
+      <workItem from="1714482362135" duration="1000" />
+      <workItem from="1714482739495" duration="370000" />
+      <workItem from="1714483124508" duration="931000" />
+      <workItem from="1714484277000" duration="459000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <option name="closed" value="true" />
@@ -330,7 +325,23 @@
       <option name="project" value="LOCAL" />
       <updated>1701849749930</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Добавление упражнений и создание страницы с планами тренировок">
+      <option name="closed" value="true" />
+      <created>1706784313666</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1706784313666</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Редизайн">
+      <option name="closed" value="true" />
+      <created>1714479053471</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1714479053471</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +362,9 @@
     <MESSAGE value="Добавил токен доступа к трекеру" />
     <MESSAGE value="Изменение логикии и внешнего вида" />
     <MESSAGE value="План написания диплома" />
-    <option name="LAST_COMMIT_MESSAGE" value="План написания диплома" />
+    <MESSAGE value="Добавление упражнений и создание страницы с планами тренировок" />
+    <MESSAGE value="Редизайн" />
+    <option name="LAST_COMMIT_MESSAGE" value="Редизайн" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -370,7 +383,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Assistent_test$auth.coverage" NAME="auth Coverage Results" MODIFIED="1699971033328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend/routes" />
     <SUITE FILE_PATH="coverage/Assistent_test$models.coverage" NAME="models Coverage Results" MODIFIED="1698387290917" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
-    <SUITE FILE_PATH="coverage/Assistent_test$routes.coverage" NAME="routes Coverage Results" MODIFIED="1698844753477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
-    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1706782344237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
+    <SUITE FILE_PATH="coverage/Assistent_test$routes.coverage" NAME="routes Coverage Results" MODIFIED="1706867688190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend/routes" />
+    <SUITE FILE_PATH="coverage/Assistent_test$app.coverage" NAME="app Coverage Results" MODIFIED="1714484289568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Assistent_test/backend" />
   </component>
 </project>
