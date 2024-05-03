@@ -5,6 +5,7 @@ const WorkoutExc = ({ apiUrl }) => {
   const { planId } = useParams();
   const [planDetails, setPlanDetails] = useState(null);
   const [newExercise, setNewExercise] = useState({ name: '', description: '', completed: false });
+  const [imageFile, setImageFile] = useState(null);
   const [maxNameLength, setMaxNameLength] = useState(50);
   const [maxDescriptionLength, setMaxDescriptionLength] = useState(200);
 
@@ -34,34 +35,47 @@ const WorkoutExc = ({ apiUrl }) => {
     fetchPlanDetails();
   }, [apiUrl, planId]);
 
-  const handleAddExercise = async (event) => {
-    event.preventDefault();
+const handleAddExercise = async (event) => {
+  event.preventDefault();
 
-    try {
-      const response = await fetch(`${apiUrl}/workout/plan/${planId}`, {
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-        },
-        body: JSON.stringify(newExercise),
-      });
-
-      if (response.status === 200) {
-        const data = await response.json();
-        setPlanDetails((prevDetails) => ({
-          ...prevDetails,
-          exercises: [...(prevDetails.exercises || []), data.exercise],
-        }));
-        setNewExercise({ name: '', description: '', completed: false });
-      } else {
-        console.error('Ошибка при добавлении упражнения:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Ошибка при добавлении упражнения:', error);
+  try {
+    const formData = new FormData();
+    formData.append('name', newExercise.name);
+    formData.append('description', newExercise.description);
+    if (imageFile) {
+      formData.append('file', imageFile);
     }
-  };
+
+    const response = await fetch(`${apiUrl}/workout/plan/${planId}`, {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      },
+      body: formData,
+    });
+
+    if (response.status === 200) {
+      const data = await response.json();
+      setPlanDetails((prevDetails) => ({
+        ...prevDetails,
+        exercises: [...(prevDetails.exercises || []), data.exercise],
+      }));
+      setNewExercise({ name: '', description: '', completed: false });
+      setImageFile(null);
+    } else if (response.status === 400) {
+      console.error('Ошибка при добавлении упражнения: Некорректные данные');
+    } else {
+      console.error('Ошибка при добавлении упражнения:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Ошибка при добавлении упражнения:', error);
+  }
+};
+
+const handleImageChange = (event) => {
+  setImageFile(event.target.files[0]);
+};
 
   const handleDeleteExercise = async (exerciseId) => {
     try {
@@ -173,6 +187,10 @@ return (
                     >
                       Удалить
                     </button>
+                    {/* Отображение изображения упражнения */}
+                    {exercise.image && (
+                      <img src={`data:image/jpeg;base64,${exercise.image}`} alt="Exercise" className="ml-5 w-24 h-24 object-cover rounded" />
+                    )}
                   </li>
                 ))}
               </ul>
@@ -182,7 +200,18 @@ return (
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2 text-gray-800">Добавить упражнение</h3>
-            <form className="max-w-screen-md mx-auto">
+            <form className="max-w-screen-md mx-auto" encType="multipart/form-data">
+              <div className="mb-4">
+                <label className="block text-gray-800 text-lg font-bold mb-2" htmlFor="newExerciseImage">
+                  Изображение упражнения:
+                </label>
+                <input
+                  className="input-field w-full px-4 py-2 rounded border focus:outline-none focus:border-gray-500"
+                  id="newExerciseImage"
+                  type="file"
+                  onChange={handleImageChange}
+                />
+              </div>
               <div className="mb-4">
                 <label className="block text-gray-800 text-lg font-bold mb-2" htmlFor="newExerciseName">
                   Название упражнения:
@@ -225,6 +254,7 @@ return (
     </main>
   </div>
 );
+
 
 
 

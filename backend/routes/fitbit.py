@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect, session, g
 import base64
 from datetime import datetime
-from backend.models.models import db, CurrentStat, User
+from backend.models.models import db, CurrentStat, User, Goal
 import requests
 from sqlalchemy.exc import IntegrityError
 
@@ -9,7 +9,7 @@ fitbit = Blueprint('routes_fitbit', __name__)
 
 client_id = "23RHT5"
 client_secret = "e98417175d9c5404052d1c3767c2e746"
-redirect_uri = "https://127.0.0.1:5000/callback"  # Callback URL
+redirect_uri = "https://127.0.0.1:5000/callback"
 
 
 @fitbit.before_request
@@ -85,6 +85,7 @@ def get_calories():
             stat = CurrentStat.query.filter_by(id=1).first()
             if stat:
                 stat.steps = data['summary']['steps']
+                print(stat.steps)
                 stat.calories = data['summary']['caloriesOut']
                 stat.date = formatted_date
             else:
@@ -96,3 +97,93 @@ def get_calories():
         except IntegrityError:
             db.session.rollback()
             return jsonify({"error": "IntegrityError: Дупликация ключа"}), 400
+
+
+@fitbit.route('/update_weight', methods=['POST'])
+def update_weight():
+    access_token = session.get("access_token")
+    if not access_token:
+        return jsonify({"error": "Токен доступа не найден. Пожалуйста, выполните аутентификацию."}), 401
+
+    data = request.json
+    new_weight = data.get('current_weight')
+    new_goalweight = data.get('weight_goal')
+    print(data)
+    if new_weight is None:
+        return jsonify({"error": "Параметр 'current_weight' отсутствует в запросе."}), 400
+
+    try:
+        user_id = g.user.id
+        current_stat = CurrentStat.query.filter_by(user_id=user_id).first()
+        if current_stat:
+            current_stat.current_weight = new_weight
+        else:
+            current_stat = CurrentStat(user_id=user_id, current_weight=new_weight)
+            db.session.add(current_stat)
+
+        goal = Goal.query.filter_by(user_id=user_id).first()
+        if goal:
+            goal.weight_goal = new_goalweight
+        else:
+            goal = Goal(user_id=user_id, weight_goal=new_goalweight)
+            db.session.add(goal)
+
+        db.session.commit()
+        return jsonify({"message": "Текущий вес и цель по весу успешно обновлены.", "new_weight": new_weight})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
+@fitbit.route('/update_max_steps', methods=['POST'])
+def update_max_steps():
+    access_token = session.get("access_token")
+    if not access_token:
+        return jsonify({"error": "Токен доступа не найден. Пожалуйста, выполните аутентификацию."}), 401
+
+    data = request.json
+    new_max_steps = data.get('max_steps')
+
+    if new_max_steps is None:
+        return jsonify({"error": "Параметр 'max_steps' отсутствует в запросе."}), 400
+
+    try:
+        user_id = g.user.id
+        goal = Goal.query.filter_by(user_id=user_id).first()
+        if goal:
+            goal.max_steps = new_max_steps
+        else:
+            goal = Goal(user_id=user_id, max_steps=new_max_steps)
+            db.session.add(goal)
+        db.session.commit()
+        return jsonify({"message": "Максимальное количество шагов успешно обновлено.", "new_max_steps": new_max_steps})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
+
+@fitbit.route('/update_max_calories', methods=['POST'])
+def update_max_calories():
+    access_token = session.get("access_token")
+    if not access_token:
+        return jsonify({"error": "Токен доступа не найден. Пожалуйста, выполните аутентификацию."}), 401
+
+    data = request.json
+    new_max_calories = data.get('max_calories')
+
+    if new_max_calories is None:
+        return jsonify({"error": "Параметр 'max_calories' отсутствует в запросе."}), 400
+
+    try:
+        user_id = g.user.id
+        goal = Goal.query.filter_by(user_id=user_id).first()
+        if goal:
+            goal.max_calories = new_max_calories
+        else:
+            goal = Goal(user_id=user_id, max_calories=new_max_calories)
+            db.session.add(goal)
+        db.session.commit()
+        return jsonify({"message": "Максимальное количество калорий успешно обновлено.", "new_max_calories": new_max_calories})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
